@@ -10,7 +10,7 @@ def GenerateEncryptedString(inputString):
     '''Usage >>> GenerateEncryptedString("String")'''
     salt = subprocess.check_output(['/usr/bin/openssl', 'rand', '-hex', '8']).rstrip()
     passphrase = subprocess.check_output(['/usr/bin/openssl', 'rand', '-hex', '12']).rstrip()
-    p = subprocess.Popen(['/usr/bin/openssl', 'enc', '-aes256', '-md', 'md5', '-md', 'md5', '-a', '-A', '-S', salt, '-k', passphrase], stdin = subprocess.PIPE, stdout = subprocess.PIPE)
+    p = subprocess.Popen(['/usr/bin/openssl', 'enc', '-aes256', '-md', 'md5', '-a', '-A', '-S', salt, '-k', passphrase], stdin = subprocess.PIPE, stdout = subprocess.PIPE)
     encrypted = p.communicate(inputString)[0]
     print("Encrypted String: %s" % encrypted)
     print("Salt: %s | Passphrase: %s" % (salt, passphrase))
