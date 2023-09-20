@@ -8,9 +8,9 @@
 function GenerateEncryptedString() {
     # Usage ~$ GenerateEncryptedString "String"
     local STRING="${1}"
-    local SALT=$(openssl rand -hex 8)
-    local K=$(openssl rand -hex 12)
-    local ENCRYPTED=$(echo "${STRING}" | openssl enc -aes256 -md md5 -a -A -S "${SALT}" -k "${K}")
+    local SALT=$(/usr/bin/openssl rand -hex 8)
+    local K=$(/usr/bin/openssl rand -hex 12)
+    local ENCRYPTED=$(echo "${STRING}" | /usr/bin/openssl enc -aes256 -md md5 -a -A -S "${SALT}" -k "${K}")
     echo "Encrypted String: ${ENCRYPTED}"
     echo "Salt: ${SALT} | Passphrase: ${K}"
 }
